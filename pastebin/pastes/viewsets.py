@@ -16,6 +16,4 @@ class PastesViewSet(ModelViewSet):
         if self.request.user.is_authenticated:
             serializer.save(owner=self.request.user)
         else:
-            serializer.save(owner=None)
-
-
+            serializer.save(owner=None, is_public=True)

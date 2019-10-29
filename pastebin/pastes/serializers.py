@@ -7,4 +7,4 @@ class PasteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Paste
-        fields = ['content', 'created']
+        fields = ['content', 'created', 'shared_with', 'is_public']

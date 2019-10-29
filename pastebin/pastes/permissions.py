@@ -12,4 +12,7 @@ class IsOwnerOrCreate(permissions.IsAuthenticated):
         return super().has_permission(request, view)
 
     def has_object_permission(self, request, view, obj):
+        if request.method in permissions.SAFE_METHODS:
+            return obj.is_public or request.user in obj.shared_with.all()
+
         return obj.owner == request.user

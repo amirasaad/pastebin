@@ -75,3 +75,33 @@ class PastesTestCase(APITestCase):
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(resp.data['count'], 5)
+
+    def test_user_share_paste_with_other_users(self):
+        self.client.force_login(self.user)
+        paste = Paste.objects.create(owner=self.user, content='text')
+        user_1 = UserFactory()
+        user_2 = UserFactory()
+
+        data = {'content': 'print("New Text"', 'shared_with': [user_1.pk, user_2.pk]}
+        resp = self.client.put(f"{self.url}{paste.pk}/", data)
+        paste.refresh_from_db()
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        self.assertIn(user_1, paste.shared_with.all())
+
+    def test_user_can_view_paste_shared_with_him(self):
+        user = UserFactory()
+        paste = Paste.objects.create(
+            owner=self.user, content='print("THis shared")', is_public=False)
+        paste.shared_with.set([user])
+        self.client.force_login(user)
+        resp = self.client.get(f'{self.url}{paste.pk}/')
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        self.assertEqual(resp.data['content'], paste.content)
+
+    def test_user_can_not_view_paste_not_shared_with_him(self):
+        user = UserFactory()
+        paste = Paste.objects.create(
+            owner=self.user, content='print("THis not shared")', is_public=False)
+        self.client.force_login(user)
+        resp = self.client.get(f'{self.url}{paste.pk}/')
+        self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
