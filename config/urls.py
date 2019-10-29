@@ -5,6 +5,8 @@ from django.contrib import admin
 from django.views.generic import TemplateView
 from django.views import defaults as default_views
 
+from rest_framework.authtoken import views
+
 from pastebin.pastes.urls import pastes_router
 
 API_PREFIX = 'api/v<version>/'
@@ -13,6 +15,7 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
+    path('api-token-auth/', views.obtain_auth_token),
     path(API_PREFIX, include(pastes_router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

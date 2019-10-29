@@ -1,5 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 
+from pastebin.pastes.filters import PasteFilter
 from pastebin.pastes.models import Paste
 from pastebin.pastes import serializers
 from pastebin.pastes.permissions import IsOwnerOrCreate
@@ -9,6 +10,7 @@ class PastesViewSet(ModelViewSet):
     queryset = Paste.objects.all()
     serializer_class = serializers.PasteSerializer
     permission_classes = [IsOwnerOrCreate]
+    filterset_class = PasteFilter
 
     def perform_create(self, serializer):
         if self.request.user.is_authenticated:

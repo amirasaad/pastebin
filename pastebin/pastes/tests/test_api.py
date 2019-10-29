@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 from rest_framework import status
 from rest_framework.test import APITestCase
 
@@ -6,6 +8,7 @@ from rest_framework.test import APITestCase
 # - Each user can filter pastes by dates.
 # - Each user can choose to share this paste with certain users
 # - Token-based authentication system.
+from pastebin.pastes.tests.factories import PasteFactory
 from pastebin.users.tests.factories import UserFactory
 from pastebin.pastes.models import Paste
 
@@ -62,3 +65,13 @@ class PastesTestCase(APITestCase):
         self.assertEqual(Paste.objects.all().count(), 1)
         paste = Paste.objects.get()
         self.assertEqual(paste.content, code)
+
+    def test_user_can_filter_pastes_by_dates(self):
+        self.client.force_login(self.user)
+        now = datetime.now()
+        pastes = PasteFactory.create_batch(5)
+        url = f'{self.url}?created__gt={now.strftime("%Y-%m-%d")}'
+        print(url)
+        resp = self.client.get(url)
+        self.assertEqual(resp.status_code, status.HTTP_200_OK)
+        self.assertEqual(resp.data['count'], 5)
