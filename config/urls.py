@@ -8,6 +8,7 @@ from django.views import defaults as default_views
 from rest_framework.authtoken import views
 
 from pastebin.pastes.urls import pastes_router
+from pastebin.users.urls import users_router
 
 API_PREFIX = 'api/v<version>/'
 
@@ -17,6 +18,7 @@ urlpatterns = [
     # User management
     path('api-token-auth/', views.obtain_auth_token),
     path(API_PREFIX, include(pastes_router.urls)),
+    path(API_PREFIX, include(users_router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
