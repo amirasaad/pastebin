@@ -12,6 +12,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 from pastebin.pastes.urls import pastes_router
 from pastebin.users.urls import users_router
 from pastebin.users.views import export_stat_csv, export_stat_xls
+from pastebin.subscriptions.urls import subscriptions_router
 
 API_PREFIX = 'api/v<version>/'
 
@@ -23,6 +24,7 @@ urlpatterns = [
     path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path(API_PREFIX, include((pastes_router.urls, 'pastes'),namespace='pastes')),
     path(API_PREFIX, include(users_router.urls)),
+    path(API_PREFIX, include(subscriptions_router.urls)),
     path('export/csv/', export_stat_csv, name='export_stat_csv'),
     path('export/xls/', export_stat_xls, name='export_stat_xls'),
     path('openapi', get_schema_view(
