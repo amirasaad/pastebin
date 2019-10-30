@@ -1,3 +1,8 @@
+"""
+Module: pastebin.pastes.viewsets
+
+Contains API for pastes app.
+"""
 from rest_framework.viewsets import ModelViewSet
 
 from pastebin.pastes.filters import PasteFilter
@@ -7,6 +12,8 @@ from pastebin.pastes.permissions import IsOwnerOrCreate
 
 
 class PastesViewSet(ModelViewSet):
+    """API endpoint for pastes.
+    """
     queryset = Paste.objects.all()
     serializer_class = serializers.PasteSerializer
     permission_classes = [IsOwnerOrCreate]

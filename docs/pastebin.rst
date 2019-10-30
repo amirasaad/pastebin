@@ -6,6 +6,7 @@ Subpackages
 
 .. toctree::
 
+   pastebin.contrib
    pastebin.pastes
    pastebin.users
    pastebin.utils

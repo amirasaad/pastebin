@@ -1,3 +1,8 @@
+"""
+Module: pastebin.pastes.models.
+
+Contains ORM for pastes app.
+"""
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.text import slugify
@@ -7,6 +12,7 @@ User = get_user_model()
 
 
 class Paste(models.Model):
+    """Stores all pastes, related to :model:`users.User`."""
 
     owner = models.ForeignKey(User, related_name='pastes', on_delete=models.SET_NULL, blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
