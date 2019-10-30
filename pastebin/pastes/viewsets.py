@@ -12,6 +12,11 @@ class PastesViewSet(ModelViewSet):
     permission_classes = [IsOwnerOrCreate]
     filterset_class = PasteFilter
 
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['request'] = self.request
+        return context
+
     def perform_create(self, serializer):
         if self.request.user.is_authenticated:
             serializer.save(owner=self.request.user)

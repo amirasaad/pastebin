@@ -1,8 +1,9 @@
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from rest_framework import status
 from rest_framework.test import APITestCase
 
+from pastebin.pastes.models import Paste
 # - Each user can create edit delete any of his pastes.
 # - Allow anonymous guests to create pastes as well.
 # - Each user can filter pastes by dates.
@@ -10,7 +11,6 @@ from rest_framework.test import APITestCase
 # - Token-based authentication system.
 from pastebin.pastes.tests.factories import PasteFactory
 from pastebin.users.tests.factories import UserFactory
-from pastebin.pastes.models import Paste
 
 
 class PastesTestCase(APITestCase):

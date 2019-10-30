@@ -17,7 +17,7 @@ urlpatterns = [
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path('api-token-auth/', views.obtain_auth_token),
-    path(API_PREFIX, include(pastes_router.urls)),
+    path(API_PREFIX, include((pastes_router.urls, 'pastes'),namespace='pastes')),
     path(API_PREFIX, include(users_router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
