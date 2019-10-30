@@ -29,3 +29,14 @@ class UsersAPITestCase(APITestCase):
         resp = self.client.get(self.url)
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         self.assertEqual(resp.data['count'], User.objects.all().count())
+
+    def test_user_can_signup(self):
+        data = {
+            'username': 'ragner',
+            'email': 'ragner@example.com',
+            'password': 'somethinghard2no'
+        }
+        resp = self.client.post(self.url, data)
+        self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
+        user = User.objects.get(username='ragner')
+        self.assertEqual(user.email, data['email'])
