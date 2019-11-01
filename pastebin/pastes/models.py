@@ -30,11 +30,6 @@ class Paste(models.Model):
     highlighted = models.TextField()
 
     def save(self, *args, **kwargs):
-
-        """
-        Use the `pygments` library to create a highlighted HTML
-        representation of the code snippet.
-        """
         lexer = get_lexer_by_name(self.language)
         linenos = 'table' if self.linenos else False
         formatter = HtmlFormatter(style=self.style, linenos=linenos,
