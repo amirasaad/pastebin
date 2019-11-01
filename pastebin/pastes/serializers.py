@@ -10,7 +10,8 @@ class PasteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Paste
-        fields = ['content', 'created', 'shared_with', 'is_public', 'owner', 'shortened_url']
+        fields = ['content', 'created', 'shared_with', 'is_public', 'owner', 'shortened_url',
+                  'language', 'style', 'linenos']
 
     def get_shortened_url(self, obj):
         request = self.context['request']
