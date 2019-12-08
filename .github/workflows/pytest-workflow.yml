@@ -1,22 +1,12 @@
-name: Run Tests
 on: push
-
+name: on push
 jobs:
-  pytest:
-    name: pytest
+  gitHubActionForPytest:
+    name: GitHub Action for pytest
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - name: Install
-      uses: abatilo/actions-poetry@v1.1.0
+    - name: GitHub Action for pytest
+      uses: cclauss/GitHub-Action-for-pytest@master
       with:
-        python_version: 3.8.0
-        poetry_version: 0.12.17
-        args: install
-    - name: Run pytest
-      uses: abatilo/actions-poetry@v1.1.0
-      with:
-        python_version: 3.8.0
-        poetry_version: 0.12.17
-        args: run python -m pytest --cov=src --cov-branch --cov-fail-under=100 tests/
-
+        args: pytest -h
