@@ -1,12 +1,24 @@
-on: push
-name: on push
-jobs:
-  gitHubActionForPytest:
-    name: GitHub Action for pytest
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@master
-    - name: GitHub Action for pytest
-      uses: cclauss/GitHub-Action-for-pytest@master
-      with:
-        args: pytest -h
+workflow "Build and Test" {
+  on = "push"
+  resolves = [
+    "Test",
+  ]
+}
+
+action "Build" {
+  uses = "jefftriplett/python-actions@master"
+  args = "pip install -r requirements.txt"
+}
+
+action "Lint" {
+  uses = "jefftriplett/python-actions@master"
+  args = "black --check"
+  needs = ["Build"]
+}
+
+action "Test" {
+  uses = "jefftriplett/python-actions@master"
+  args = "pytest"
+  needs = ["Lint"]
+}
+
