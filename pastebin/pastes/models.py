@@ -33,6 +33,9 @@ class Paste(models.Model):
     style = models.CharField(choices=STYLE_CHOICES, default="friendly", max_length=100)
     highlighted = models.TextField()
 
+    class Meta:
+        ordering = ['-created']
+
     def save(self, *args, **kwargs):
         lexer = get_lexer_by_name(self.language)
         linenos = "table" if self.linenos else False
