@@ -29,6 +29,7 @@ def create_user(
         username=username,
         password=password
     )
+    return user
 
 
 async def auth_connect(user):
