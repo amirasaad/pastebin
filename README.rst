@@ -21,6 +21,8 @@ Share codes and notes with your friends!
     :target: https://app.codeship.com/projects/372098 
     :alt: Codeship Status
 
+.. image:: https://codecov.io/gh/amirasaad/pastebin/branch/master/graph/badge.svg
+  :target: https://codecov.io/gh/amirasaad/pastebin
 
 :License: MIT
 
