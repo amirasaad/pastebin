@@ -1,9 +1,9 @@
-from rest_framework.permissions import IsAuthenticated, SAFE_METHODS
+from rest_framework.permissions import SAFE_METHODS, IsAuthenticated
 
 
 class IsAuthenticatedOrCreate(IsAuthenticated):
     def has_permission(self, request, view):
-        if request.method == 'POST':
+        if request.method == "POST":
             return True
         return super().has_permission(request, view)
 

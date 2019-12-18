@@ -1,7 +1,6 @@
 import csv
+
 import xlwt
-
-
 from django.contrib.auth import get_user_model
 from django.db.models import Count
 from django.http import HttpResponse
@@ -10,13 +9,17 @@ User = get_user_model()
 
 
 def export_stat_csv(request):
-    response = HttpResponse(content_type='text/csv')
-    response['Content-Disposition'] = 'attachment; filename="Statistics.csv"'
+    response = HttpResponse(content_type="text/csv")
+    response["Content-Disposition"] = 'attachment; filename="Statistics.csv"'
 
     writer = csv.writer(response)
-    writer.writerow(['Username', 'Num of Pastes'])
+    writer.writerow(["Username", "Num of Pastes"])
 
-    users = User.objects.all().annotate(Count('pastes')).values_list('username', 'pastes__count')
+    users = (
+        User.objects.all()
+        .annotate(Count("pastes"))
+        .values_list("username", "pastes__count")
+    )
 
     for user in users:
         writer.writerow(user)
@@ -25,11 +28,11 @@ def export_stat_csv(request):
 
 
 def export_stat_xls(request):
-    response = HttpResponse(content_type='application/ms-excel')
-    response['Content-Disposition'] = 'attachment; filename="Statistics.xls"'
+    response = HttpResponse(content_type="application/ms-excel")
+    response["Content-Disposition"] = 'attachment; filename="Statistics.xls"'
 
-    wb = xlwt.Workbook(encoding='utf-8')
-    ws = wb.add_sheet('Statistics')
+    wb = xlwt.Workbook(encoding="utf-8")
+    ws = wb.add_sheet("Statistics")
 
     # Sheet header, first row
     row_num = 0
@@ -37,7 +40,7 @@ def export_stat_xls(request):
     font_style = xlwt.XFStyle()
     font_style.font.bold = True
 
-    columns = ['Username', 'Num of Pastes']
+    columns = ["Username", "Num of Pastes"]
 
     for col_num in range(len(columns)):
         ws.write(row_num, col_num, columns[col_num], font_style)
@@ -45,7 +48,11 @@ def export_stat_xls(request):
     # Sheet body, remaining rows
     font_style = xlwt.XFStyle()
 
-    rows = User.objects.all().annotate(Count('pastes')).values_list('username', 'pastes__count')
+    rows = (
+        User.objects.all()
+        .annotate(Count("pastes"))
+        .values_list("username", "pastes__count")
+    )
     for row in rows:
         row_num += 1
         for col_num in range(len(row)):

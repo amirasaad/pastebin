@@ -1,7 +1,6 @@
 import pytest
 from celery.result import EagerResult
 
-
 from pastebin.users.tasks import get_users_count
 from pastebin.users.tests.factories import UserFactory
 

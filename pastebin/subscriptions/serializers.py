@@ -8,4 +8,4 @@ class SubscriptionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Subscription
-        fields = ['id', 'stripe_token']
+        fields = ["id", "stripe_token"]

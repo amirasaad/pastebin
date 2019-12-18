@@ -10,10 +10,12 @@ from pastebin.subscriptions.serializers import SubscriptionSerializer
 stripe.api_key = settings.STRIPE_SECRET_KEY
 
 
-class SubscriptionsViewSet(mixins.CreateModelMixin,
-                           mixins.RetrieveModelMixin,
-                           mixins.ListModelMixin,
-                           GenericViewSet):
+class SubscriptionsViewSet(
+    mixins.CreateModelMixin,
+    mixins.RetrieveModelMixin,
+    mixins.ListModelMixin,
+    GenericViewSet,
+):
 
     permission_classes = [IsAuthenticated]
     serializer_class = SubscriptionSerializer
@@ -27,16 +29,13 @@ class SubscriptionsViewSet(mixins.CreateModelMixin,
         sup = Subscription.objects.filter(user=user).first()
         if sup is None:
             customer = stripe.Customer.create(
-                email=user.email,
-                source=self.request.POST['stripe_token'],
-
+                email=user.email, source=self.request.POST["stripe_token"]
             )
             sub1 = stripe.Subscription.create(
-                customer=customer.stripe_id,
-                items=[{'plan': 'prod_G5V5RMHcZ7bcbJ'}],
+                customer=customer.stripe_id, items=[{"plan": "prod_G5V5RMHcZ7bcbJ"}]
             )
             serializer.save(
-                user=self.request.user, strip_customer_id=customer.stripe_id,
-                strip_subscription_id=sub1.stripe_id
-
+                user=self.request.user,
+                strip_customer_id=customer.stripe_id,
+                strip_subscription_id=sub1.stripe_id,
             )
