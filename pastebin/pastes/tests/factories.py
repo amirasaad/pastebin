@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from factory import DjangoModelFactory, Faker, LazyFunction
+
 from pastebin.pastes.models import Paste
 
 

@@ -10,6 +10,17 @@ Share codes and notes with your friends!
      :target: https://github.com/ambv/black
      :alt: Black code style
 
+.. image:: https://travis-ci.org/amirasaad/pastebin.svg?branch=master
+    :target: https://travis-ci.org/amirasaad/pastebin
+    :alt: Travis status
+.. image:: https://circleci.com/gh/amirasaad/pastebin.svg?style=svg
+    :target: https://circleci.com/gh/amirasaad/pastebin
+    :alt: CircleCi Status
+
+.. image:: https://app.codeship.com/projects/647c9040-de7d-0137-0848-562498d4ae94/status?branch=master
+    :target: https://app.codeship.com/projects/372098 
+    :alt: Codeship Status
+
 
 :License: MIT
 

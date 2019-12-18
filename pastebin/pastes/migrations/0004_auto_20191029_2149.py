@@ -6,14 +6,14 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('pastes', '0003_auto_20191029_2147'),
-    ]
+    dependencies = [("pastes", "0003_auto_20191029_2147")]
 
     operations = [
         migrations.AlterField(
-            model_name='paste',
-            name='shared_with',
-            field=models.ManyToManyField(blank=True, related_name='shared_pastes', to=settings.AUTH_USER_MODEL),
-        ),
+            model_name="paste",
+            name="shared_with",
+            field=models.ManyToManyField(
+                blank=True, related_name="shared_pastes", to=settings.AUTH_USER_MODEL
+            ),
+        )
     ]

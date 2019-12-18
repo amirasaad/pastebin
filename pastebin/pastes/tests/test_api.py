@@ -16,12 +16,12 @@ from pastebin.users.tests.factories import UserFactory
 class PastesTestCase(APITestCase):
     def setUp(self) -> None:
         self.user = UserFactory()
-        self.url = '/api/v1/pastes/'
+        self.url = "/api/v1/pastes/"
 
     def test_user_can_create_paste(self):
         self.client.force_login(self.user)
         code = "print('Hello World')"
-        data = {'content': code}
+        data = {"content": code}
         resp = self.client.post(self.url, data)
         self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Paste.objects.all().count(), 1)
@@ -30,36 +30,36 @@ class PastesTestCase(APITestCase):
 
     def test_user_can_edit_his_paste(self):
         self.client.force_login(self.user)
-        paste = Paste.objects.create(owner=self.user, content='text')
-        data = {'content': 'print("New Text"'}
+        paste = Paste.objects.create(owner=self.user, content="text")
+        data = {"content": 'print("New Text"'}
         resp = self.client.put(f"{self.url}{paste.pk}/", data)
         paste.refresh_from_db()
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
-        self.assertEqual(paste.content, data['content'])
+        self.assertEqual(paste.content, data["content"])
 
     def test_user_can_not_edit_other_paste(self):
         self.client.force_login(self.user)
-        paste = Paste.objects.create(owner=UserFactory(), content='text')
-        data = {'content': 'print("New Text"'}
+        paste = Paste.objects.create(owner=UserFactory(), content="text")
+        data = {"content": 'print("New Text"'}
         resp = self.client.put(f"{self.url}{paste.pk}/", data)
         paste.refresh_from_db()
         self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_user_can_delete_his_paste(self):
         self.client.force_login(self.user)
-        paste = Paste.objects.create(owner=self.user, content='text')
+        paste = Paste.objects.create(owner=self.user, content="text")
         resp = self.client.delete(f"{self.url}{paste.pk}/")
         self.assertEqual(resp.status_code, status.HTTP_204_NO_CONTENT)
 
     def test_user_can_not_delete_other_paste(self):
         self.client.force_login(self.user)
-        paste = Paste.objects.create(owner=UserFactory(), content='text')
+        paste = Paste.objects.create(owner=UserFactory(), content="text")
         resp = self.client.delete(f"{self.url}{paste.pk}/")
         self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_anonymous_user_can_create_paste(self):
         code = "print('Hello World')"
-        data = {'content': code}
+        data = {"content": code}
         resp = self.client.post(self.url, data)
         self.assertEqual(resp.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Paste.objects.all().count(), 1)
@@ -74,15 +74,15 @@ class PastesTestCase(APITestCase):
         print(url)
         resp = self.client.get(url)
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
-        self.assertEqual(resp.data['count'], 5)
+        self.assertEqual(resp.data["count"], 5)
 
     def test_user_share_paste_with_other_users(self):
         self.client.force_login(self.user)
-        paste = Paste.objects.create(owner=self.user, content='text')
+        paste = Paste.objects.create(owner=self.user, content="text")
         user_1 = UserFactory()
         user_2 = UserFactory()
 
-        data = {'content': 'print("New Text"', 'shared_with': [user_1.pk, user_2.pk]}
+        data = {"content": 'print("New Text"', "shared_with": [user_1.pk, user_2.pk]}
         resp = self.client.put(f"{self.url}{paste.pk}/", data)
         paste.refresh_from_db()
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
@@ -91,17 +91,19 @@ class PastesTestCase(APITestCase):
     def test_user_can_view_paste_shared_with_him(self):
         user = UserFactory()
         paste = Paste.objects.create(
-            owner=self.user, content='print("THis shared")', is_public=False)
+            owner=self.user, content='print("THis shared")', is_public=False
+        )
         paste.shared_with.set([user])
         self.client.force_login(user)
-        resp = self.client.get(f'{self.url}{paste.pk}/')
+        resp = self.client.get(f"{self.url}{paste.pk}/")
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
-        self.assertEqual(resp.data['content'], paste.content)
+        self.assertEqual(resp.data["content"], paste.content)
 
     def test_user_can_not_view_paste_not_shared_with_him(self):
         user = UserFactory()
         paste = Paste.objects.create(
-            owner=self.user, content='print("THis not shared")', is_public=False)
+            owner=self.user, content='print("THis not shared")', is_public=False
+        )
         self.client.force_login(user)
-        resp = self.client.get(f'{self.url}{paste.pk}/')
+        resp = self.client.get(f"{self.url}{paste.pk}/")
         self.assertEqual(resp.status_code, status.HTTP_403_FORBIDDEN)

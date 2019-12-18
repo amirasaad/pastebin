@@ -6,4 +6,4 @@ app_name = "users"
 
 users_router = DefaultRouter()
 
-users_router.register(r'users', viewsets.UsersViewSet)
+users_router.register(r"users", viewsets.UsersViewSet)
