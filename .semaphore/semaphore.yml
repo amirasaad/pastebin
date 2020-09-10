@@ -33,3 +33,5 @@ blocks:
           value: sk_test_8iAzB1ROTLMiHOKBTiyLclHv00OEIdRl3V
         - name: STRIPE_PUBLISHABLE_KEY
           value: pk_test_VrbAfcIZmzrSUvRA4GsaDtDN00YWDyXTXh
+        - name: USE_DOCKER
+          value: 'no'
