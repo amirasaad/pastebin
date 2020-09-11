@@ -42,4 +42,4 @@ blocks:
             - docker ps
         - name: Run Unit test
           commands:
-            - docker-compose -f local.yml run --rm pytest
+            - docker-compose -f local.yml run --rm django python pytest
