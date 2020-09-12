@@ -5,58 +5,17 @@
 version: 2
 jobs:
   build:
-    docker:
-      # specify the version you desire here
-      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
-      - image: circleci/python:3.8.0
-      - image: circleci/redis:latest
-      - image: circleci/postgres:10.5
-        environment:
-          DATABASE_URL: postgres://postgres:@localhost/circle_test
-          DJANGO_SECRET_KEY: test
-          DJANGO_READ_DOT_ENV_FILE: True
-          DJANGO_SETTINGS_MODULE: config.settings.test
-
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
+    machine: true # Use a Linux VM instead of docker environment
     working_directory: ~/repo
-
     steps:
       - checkout
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "requirements.txt" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
       - run:
-          name: install dependencies
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r requirements/local.txt
-
-      - save_cache:
-          paths:
-            - ./venv
-          key: v1-dependencies-{{ checksum "requirements/local.txt" }}
-
-      # run tests!
-      # this example uses Django's built-in test-runner
-      # other common Python testing frameworks include pytest and nose
-      # https://pytest.org
-      # https://nose.readthedocs.io
+          name: Build docker images
+          command: docker-compose -f local.yml build
       - run:
-          name: run tests
+          name: Run tests
           command: |
-            . venv/bin/activate
-            mkdir test-reports
-            pytest --junitxml=test-reports/junit.xml
+            docker-compose -f local.yml run django pytest --junitxml=test-reports/junit.xml
       - store_test_results:
           path: test-reports
       - store_artifacts:
@@ -64,7 +23,7 @@ jobs:
           destination: test-reports
   docs-build:
     docker:
-      - image: python:3.7
+      - image: python:3.8
     steps:
       - checkout
       - run:
@@ -78,7 +37,7 @@ jobs:
           paths: html
   docs-deploy:
     docker:
-      - image: python:3.7
+      - image: python:3.8
     steps:
       - checkout
       - run:
