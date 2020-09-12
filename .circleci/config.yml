@@ -3,54 +3,25 @@
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 #
 version: 2
+executors:
+  python:
+    docker:
+      - image: circleci/python:3.8.0
+
 jobs:
   build:
-    docker:
-      - image: circleci/buildpack-deps:stretch
+    machine:
+      docker_layer_caching: true
     working_directory: ~/repo
-    environment:
-      IMAGE_NAME: amirasaad/pastebin
     steps:
-      - setup_remote_docker
       - checkout
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "requirements.txt" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
       - run:
-          name: Docker build
-          command: |
-            docker login --username "${DOCKER_USERNAME}" --password "${DOCKER_PASSWORD}"
-            checkout
-            docker-compose -f local.yml build
-            docker tag $IMAGE_NAME:latest "${DOCKER_USERNAME}" /pastebin:latest
-            docker push "${DOCKER_USERNAME}"/"${IMAGE_NAME}":latest
-            docker images
-
-      # run tests!
-      # this example uses Django's built-in test-runner
-      # other common Python testing frameworks include pytest and nose
-      # https://pytest.org
-      # https://nose.readthedocs.io
-      - run:
-          name: Run docker
-          command: |
-            echo "${DOCKER_PASSWORD}" | docker login -u "${DOCKER_USERNAME}" --password-stdin
-            checkout
-            docker pull "$DOCKER_USERNAME"/pastebin
-            docker-compose -f local.yml up -d
+          name: Build docker images
+          command: docker-compose -f local.yml build
       - run:
           name: Run tests
           command: |
-            docker-compose -f local.yml run --rm django pytest --junitxml=test-reports/junit.xml
-      - store_test_results:
-          path: test-reports
-      - store_artifacts:
-          path: test-reports
-          destination: test-reports
+            docker-compose -f local.yml run django pytest
   docs-build:
     docker:
       - image: python:3.7
