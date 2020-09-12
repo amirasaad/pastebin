@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Docker build
           command: |
-            echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin
+            docker login --username "${DOCKER_USERNAME}" --password ${DOCKER_PASSWORD}"
             checkout
             docker-compose -f local.yml build
             docker tag $IMAGE_NAME:latest "$DOCKER_USERNAME"/pastebin:latest
