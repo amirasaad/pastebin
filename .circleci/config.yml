@@ -15,7 +15,12 @@ jobs:
       - run:
           name: Run tests
           command: |
-            docker-compose -f local.yml run django pytest
+            docker-compose -f local.yml run django pytest --junitxml=test-reports/junit.xml
+      - store_test_results:
+          path: test-reports
+      - store_artifacts:
+          path: test-reports
+          destination: test-reports
   docs-build:
     docker:
       - image: python:3.8
