@@ -3,15 +3,10 @@
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 #
 version: 2
-executors:
-  python:
-    docker:
-      - image: circleci/python:3.8.0
-
 jobs:
   build:
-    machine:
-      docker_layer_caching: true
+    docker:
+      - image: python:3.8
     working_directory: ~/repo
     steps:
       - checkout
@@ -24,7 +19,7 @@ jobs:
             docker-compose -f local.yml run django pytest
   docs-build:
     docker:
-      - image: python:3.7
+      - image: python:3.8
     steps:
       - checkout
       - run:
@@ -38,7 +33,7 @@ jobs:
           paths: html
   docs-deploy:
     docker:
-      - image: python:3.7
+      - image: python:3.8
     steps:
       - checkout
       - run:
