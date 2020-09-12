@@ -26,8 +26,8 @@ jobs:
             docker login --username "${DOCKER_USERNAME}" --password "${DOCKER_PASSWORD}"
             checkout
             docker-compose -f local.yml build
-            docker tag $IMAGE_NAME:latest "$DOCKER_USERNAME"/pastebin:latest
-            docker push "$DOCKER_USERNAME"/$IMAGE_NAME:latest
+            docker tag $IMAGE_NAME:latest "${DOCKER_USERNAME}" /pastebin:latest
+            docker push "${DOCKER_USERNAME}"/"${IMAGE_NAME}":latest
             docker images
 
       # run tests!
