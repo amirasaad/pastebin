@@ -5,10 +5,7 @@
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 PAPER         =
-BUILDDIR      = ../../pastebin-test-docs
-PDFBUILDDIR   = /tmp
-PDF           = ../manual.pdf
-
+BUILDDIR      = _build
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -106,14 +103,10 @@ latex:
 	      "(use \`make latexpdf' here to do that automatically)."
 
 latexpdf:
-	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(PDFBUILDDIR)/latex
-	#                                          ^^^
+	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
 	@echo "Running LaTeX files through pdflatex..."
-	make -C $(PDFBUILDDIR)/latex all-pdf
-	#         ^^^
-	cp $(PDFBUILDDIR)/latex/*.pdf $(PDF)
-	#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-	@echo "pdflatex finished; see $(PDF)"
+	$(MAKE) -C $(BUILDDIR)/latex all-pdf
+	@echo "pdflatex finished; the PDF files are in $(BUILDDIR)/latex."
 
 text:
 	$(SPHINXBUILD) -b text $(ALLSPHINXOPTS) $(BUILDDIR)/text
