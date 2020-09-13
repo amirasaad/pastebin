@@ -6,7 +6,7 @@ from pastebin.pastes.models import Paste
 
 
 class PasteFactory(DjangoModelFactory):
-    # content = Faker('content')
+    content = Faker('content')
     created = LazyFunction(datetime.now)
 
     class Meta:
