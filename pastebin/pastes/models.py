@@ -17,23 +17,27 @@ STYLE_CHOICES = sorted([(item, item) for item in get_all_styles()])
 
 
 class Paste(models.Model):
-    """Stores all pastes, related to :model:`users.User`."""
+    """Stores all pastes."""
 
     owner = models.ForeignKey(
-        User, related_name="pastes", on_delete=models.SET_NULL, blank=True, null=True
+        User, related_name="pastes", on_delete=models.SET_NULL, blank=True, null=True,
+        help_text="Owner of Paste."
     )
     created = models.DateTimeField(auto_now_add=True)
     content = models.TextField()
-    shared_with = models.ManyToManyField(User, related_name="shared_pastes", blank=True)
+    shared_with = models.ManyToManyField(
+        User, related_name="shared_pastes", blank=True,
+        help_text="Users can access this Paste.")
     is_public = models.BooleanField(default=True)
     linenos = models.BooleanField(default=False)
     language = models.CharField(
         choices=LANGUAGE_CHOICES, default="python", max_length=100
     )
     style = models.CharField(choices=STYLE_CHOICES, default="friendly", max_length=100)
-    highlighted = models.TextField()
+    highlighted = models.TextField(help_text="Show highlighted code in `content`.")
 
     def save(self, *args, **kwargs):
+        """Override save() from Model to highlight the content."""
         lexer = get_lexer_by_name(self.language)
         linenos = "table" if self.linenos else False
         formatter = HtmlFormatter(style=self.style, linenos=linenos, full=True)
