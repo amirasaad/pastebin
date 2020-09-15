@@ -37,10 +37,7 @@ jobs:
       - checkout
       - run:
           name: Deploy docs to Github Pages
-          command:  docker-compose -f local.yml run django make -C docs/ html
-      - run:
-          name: Add .nojekyll file
-          command:  touch docs/_build/html/.nojekyll
+          command:  docker-compose -f local.yml run django make -C docs/ github
 workflows:
   version: 2
   build:
