@@ -27,3 +27,8 @@ django-extensions==3.0.8  # https://github.com/django-extensions/django-extensio
 django-coverage-plugin==1.8.0  # https://github.com/nedbat/django_coverage_plugin
 pytest-django==3.9.0  # https://github.com/pytest-dev/pytest-django
 pytest-cov==2.10.1
+
+# Docs tools
+sphinxcontrib-django==0.5.1  # https://github.com/edoburu/sphinxcontrib-django
+sphinx-rtd-theme==0.5.0  ## https://github.com/readthedocs/sphinx_rtd_theme
+sphinx-autodoc-annotation==1.0.post1
