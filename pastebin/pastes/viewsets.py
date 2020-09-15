@@ -25,6 +25,7 @@ class PastesViewSet(ModelViewSet):
 
     @action(detail=True, renderer_classes=[StaticHTMLRenderer])
     def highlight(self, request, *args, **kwargs):
+        """Endpoint return highlighted code."""
         paste = self.get_object()
         return Response(paste.highlighted)
 
