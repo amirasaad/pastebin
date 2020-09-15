@@ -36,10 +36,10 @@ class Paste(models.Model):
     style = models.CharField(choices=STYLE_CHOICES, default="friendly", max_length=100)
     highlighted = models.TextField(help_text="Show highlighted code in `content`.")
 
-    def save(self, **kwargs):
+    def save(self, *args, **kwargs):
         """Override save() from Model to highlight the content."""
         lexer = get_lexer_by_name(self.language)
         linenos = "table" if self.linenos else False
         formatter = HtmlFormatter(style=self.style, linenos=linenos, full=True)
         self.highlighted = highlight(self.content, lexer, formatter)
-        super().save(**kwargs)
+        super().save(*args, **kwargs)
