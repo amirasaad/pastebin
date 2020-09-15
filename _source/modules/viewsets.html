@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ViewSets &mdash; Pastebin 0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Models" href="models.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Pastebin
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../includeme.html">Pastebin</a></li>
+<li class="toctree-l1"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">ViewSets</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Pastebin</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>ViewSets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/_source/modules/viewsets.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-pastebin.pastes.viewsets">
+<span id="viewsets"></span><h1>ViewSets<a class="headerlink" href="#module-pastebin.pastes.viewsets" title="Permalink to this headline">¶</a></h1>
+<p>Module: pastebin.pastes.viewsets</p>
+<p>Contains API for pastes app.</p>
+<dl class="py class">
+<dt id="pastebin.pastes.viewsets.PastesViewSet">
+<em class="property">class </em><code class="sig-prename descclassname">pastebin.pastes.viewsets.</code><code class="sig-name descname">PastesViewSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pastebin.pastes.viewsets.PastesViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><p>API endpoint for pastes.</p>
+<dl class="py attribute">
+<dt id="pastebin.pastes.viewsets.PastesViewSet.basename">
+<code class="sig-name descname">basename</code><em class="property"> = None</em><a class="headerlink" href="#pastebin.pastes.viewsets.PastesViewSet.basename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.pastes.viewsets.PastesViewSet.description">
+<code class="sig-name descname">description</code><em class="property"> = None</em><a class="headerlink" href="#pastebin.pastes.viewsets.PastesViewSet.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.pastes.viewsets.PastesViewSet.detail">
+<code class="sig-name descname">detail</code><em class="property"> = None</em><a class="headerlink" href="#pastebin.pastes.viewsets.PastesViewSet.detail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.pastes.viewsets.PastesViewSet.filterset_class">
+<code class="sig-name descname">filterset_class</code><a class="headerlink" href="#pastebin.pastes.viewsets.PastesViewSet.filterset_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">pastebin.pastes.filters.PasteFilter</span></code></p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pastebin.pastes.viewsets.PastesViewSet.get_serializer_context">
+<code class="sig-name descname">get_serializer_context</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pastebin.pastes.viewsets.PastesViewSet.get_serializer_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extra context provided to the serializer class.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="pastebin.pastes.viewsets.PastesViewSet.highlight">
+<code class="sig-name descname">highlight</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">request</span></em>, <em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pastebin.pastes.viewsets.PastesViewSet.highlight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Endpoint return highlighted code.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.pastes.viewsets.PastesViewSet.name">
+<code class="sig-name descname">name</code><em class="property"> = None</em><a class="headerlink" href="#pastebin.pastes.viewsets.PastesViewSet.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="pastebin.pastes.viewsets.PastesViewSet.perform_create">
+<code class="sig-name descname">perform_create</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">serializer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pastebin.pastes.viewsets.PastesViewSet.perform_create" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.pastes.viewsets.PastesViewSet.permission_classes">
+<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'pastebin.pastes.permissions.IsOwnerOrCreate'&gt;]</em><a class="headerlink" href="#pastebin.pastes.viewsets.PastesViewSet.permission_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.pastes.viewsets.PastesViewSet.queryset">
+<code class="sig-name descname">queryset</code><em class="property"> = QuerySet</em><a class="headerlink" href="#pastebin.pastes.viewsets.PastesViewSet.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.pastes.viewsets.PastesViewSet.serializer_class">
+<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#pastebin.pastes.viewsets.PastesViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">pastebin.pastes.serializers.PasteSerializer</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.pastes.viewsets.PastesViewSet.suffix">
+<code class="sig-name descname">suffix</code><em class="property"> = None</em><a class="headerlink" href="#pastebin.pastes.viewsets.PastesViewSet.suffix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-pastebin.users.viewsets"></span><dl class="py class">
+<dt id="pastebin.users.viewsets.UsersViewSet">
+<em class="property">class </em><code class="sig-prename descclassname">pastebin.users.viewsets.</code><code class="sig-name descname">UsersViewSet</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="headerlink" href="#pastebin.users.viewsets.UsersViewSet" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py attribute">
+<dt id="pastebin.users.viewsets.UsersViewSet.basename">
+<code class="sig-name descname">basename</code><em class="property"> = None</em><a class="headerlink" href="#pastebin.users.viewsets.UsersViewSet.basename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.users.viewsets.UsersViewSet.description">
+<code class="sig-name descname">description</code><em class="property"> = None</em><a class="headerlink" href="#pastebin.users.viewsets.UsersViewSet.description" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.users.viewsets.UsersViewSet.detail">
+<code class="sig-name descname">detail</code><em class="property"> = None</em><a class="headerlink" href="#pastebin.users.viewsets.UsersViewSet.detail" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.users.viewsets.UsersViewSet.filter_backends">
+<code class="sig-name descname">filter_backends</code><em class="property"> = [&lt;class 'rest_framework.filters.SearchFilter'&gt;]</em><a class="headerlink" href="#pastebin.users.viewsets.UsersViewSet.filter_backends" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.users.viewsets.UsersViewSet.http_method_names">
+<code class="sig-name descname">http_method_names</code><em class="property"> = ['get', 'post', 'head', 'put']</em><a class="headerlink" href="#pastebin.users.viewsets.UsersViewSet.http_method_names" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.users.viewsets.UsersViewSet.name">
+<code class="sig-name descname">name</code><em class="property"> = None</em><a class="headerlink" href="#pastebin.users.viewsets.UsersViewSet.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.users.viewsets.UsersViewSet.permission_classes">
+<code class="sig-name descname">permission_classes</code><em class="property"> = [&lt;class 'pastebin.users.permissions.IsAuthenticatedOrCreate'&gt;]</em><a class="headerlink" href="#pastebin.users.viewsets.UsersViewSet.permission_classes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.users.viewsets.UsersViewSet.queryset">
+<code class="sig-name descname">queryset</code><em class="property"> = QuerySet</em><a class="headerlink" href="#pastebin.users.viewsets.UsersViewSet.queryset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.users.viewsets.UsersViewSet.search_fields">
+<code class="sig-name descname">search_fields</code><em class="property"> = ['username', 'email']</em><a class="headerlink" href="#pastebin.users.viewsets.UsersViewSet.search_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.users.viewsets.UsersViewSet.serializer_class">
+<code class="sig-name descname">serializer_class</code><a class="headerlink" href="#pastebin.users.viewsets.UsersViewSet.serializer_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">pastebin.users.serializers.UserSerializer</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="pastebin.users.viewsets.UsersViewSet.suffix">
+<code class="sig-name descname">suffix</code><em class="property"> = None</em><a class="headerlink" href="#pastebin.users.viewsets.UsersViewSet.suffix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="models.html" class="btn btn-neutral float-left" title="Models" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2019, Amir Asaad
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
