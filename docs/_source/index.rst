@@ -10,8 +10,10 @@ Table of Contents:
 
 .. toctree::
    :maxdepth: 2
-   includeme
 
+   includeme
+   modules/models
+   modules/viewsets
 
 Indices & Tables
 ================
