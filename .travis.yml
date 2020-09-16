@@ -1,19 +1,37 @@
-dist: xenial
-services:
-  - postgresql
-  - redis-server
-before_install:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq build-essential gettext python-dev zlib1g-dev libpq-dev xvfb
-  - sudo apt-get install -qq libjpeg8-dev libfreetype6-dev libwebp-dev
-  - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
-  - sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev libreadline-dev
-  - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
-  - psql -c 'create database travis_ci_test;' -U postgres
 language: python
 python:
-  - "3.7"
-install:
-  - pip install -r requirements/local.txt
+  - "3.8"
+
+# command to install dependencies
+services:
+  - docker
+
+env:
+  DOCKER_COMPOSE_VERSION: 1.24.1
+
+before_install:
+  - sudo rm /usr/local/bin/docker-compose
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
+
+before_script:
+  - docker-compose -f local.yml  up -d --build
+
 script:
-  - "pytest"
+  - docker-compose -f local.yml run django pytest
+  - docker-compose -f local.yml run django black pastebin
+  - docker-compose -f local.yml run django flake8 pastebin
+  - docker-compose -f local.yml run django make -C docs/ html
+  - sudo touch docs/_build/html/.nojekyll
+
+after_script:
+  - docker-compose down
+
+deploy:
+  - provider: pages
+    verbose: true
+    token: $GITHUB_TOKEN
+    edge: true
+    local_dir: ./docs/_build/html/
+    keep_history: true

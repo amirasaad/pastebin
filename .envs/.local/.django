@@ -2,6 +2,10 @@
 # ------------------------------------------------------------------------------
 USE_DOCKER=yes
 IPYTHONDIR=/app/.ipython
+DJANGO_READ_DOT_ENV_FILE=True
+DJANGO_SETTINGS_MODULE=config.settings.local
+DJANGO_SECRET_KEY=FHa0qc5av7maPmOze97sOPL7uDc0I3TLgkXK1xVTWlzPaicNqRB4xFlssC22wtSv
+DJANGO_ADMIN_URL=L4mzksfx3LmUzE82sX4QKsMNXg9x1ZJg/
 # Redis
 # ------------------------------------------------------------------------------
 REDIS_URL=redis://redis:6379/0
@@ -13,3 +17,6 @@ REDIS_URL=redis://redis:6379/0
 CELERY_FLOWER_USER=JClwqVycBNCHTMqeZBxnIasVNAAAXFzf
 CELERY_FLOWER_PASSWORD=00WzM7G1Du7xuSbjvyEx2T9cBkCLTiKQVCiMhqGV2w5dheWQMFUdAebzOc79iyfu
 
+# Stripe
+STRIPE_SECRET_KEY='sk_test_************'
+STRIPE_PUBLISHABLE_KEY='pk_test_**********'

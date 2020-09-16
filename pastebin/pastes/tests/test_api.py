@@ -69,7 +69,7 @@ class PastesTestCase(APITestCase):
     def test_user_can_filter_pastes_by_dates(self):
         self.client.force_login(self.user)
         now = datetime.now()
-        pastes = PasteFactory.create_batch(5)
+        PasteFactory.create_batch(5)
         url = f'{self.url}?created__gt={now.strftime("%Y-%m-%d")}'
         print(url)
         resp = self.client.get(url)

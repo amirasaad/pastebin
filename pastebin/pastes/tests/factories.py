@@ -1,12 +1,12 @@
 from datetime import datetime
 
-from factory import DjangoModelFactory, Faker, LazyFunction
+from factory import LazyFunction
+from factory.django import DjangoModelFactory
 
 from pastebin.pastes.models import Paste
 
 
 class PasteFactory(DjangoModelFactory):
-    # content = Faker('content')
     created = LazyFunction(datetime.now)
 
     class Meta:
