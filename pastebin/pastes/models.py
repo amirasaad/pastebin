@@ -36,6 +36,9 @@ class Paste(models.Model):
     style = models.CharField(choices=STYLE_CHOICES, default="friendly", max_length=100)
     highlighted = models.TextField(help_text="Show highlighted code in `content`.")
 
+    class Meta:
+        ordering = ['-created']
+
     def save(self, *args, **kwargs):
         """Override save() from Model to highlight the content."""
         lexer = get_lexer_by_name(self.language)

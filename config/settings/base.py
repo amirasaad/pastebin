@@ -68,6 +68,7 @@ THIRD_PARTY_APPS = [
     "rest_framework.authtoken",
     "django_filters",
     "django_celery_beat",
+    "channels",
 ]
 
 LOCAL_APPS = [
@@ -280,3 +281,15 @@ REST_FRAMEWORK = {
 
 STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
 STRIPE_PUBLISHABLE_KEY = env("STRIPE_PUBLISHABLE_KEY")
+
+# Channels
+# -----------------------------------------------------------------------------------
+ASGI_APPLICATION = "config.routing.application"
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
