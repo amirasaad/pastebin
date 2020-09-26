@@ -5,13 +5,13 @@ pipeline {
     stages {
         stage("Build") {
             steps{
-                docker-compose -f local.yml build
+                sh "docker-compose -f local.yml build"
             }
         }
 
         stage("Build") {
             steps{
-                docker-compose -f local.yml run django pytest
+                sh "docker-compose -f local.yml run django pytest"
             }
         }
     }
