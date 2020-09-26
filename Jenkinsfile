@@ -9,7 +9,7 @@ pipeline {
             }
         }
 
-        stage("Build") {
+        stage("Test") {
             steps{
                 sh "docker-compose -f local.yml run django pytest"
             }
