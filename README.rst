@@ -23,6 +23,11 @@ Share codes and notes with your friends!
 
 .. image:: https://codecov.io/gh/amirasaad/pastebin/branch/master/graph/badge.svg
   :target: https://codecov.io/gh/amirasaad/pastebin
+  :alt: Codecov
+
+.. image:: https://amirasaad.semaphoreci.com/badges/pastebin/branches/master.svg
+   :target: https://amirasaad.semaphoreci.com/projects/pastebin
+   :alt: Semaphore Status
 
 :License: MIT
 
