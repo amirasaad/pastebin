@@ -1,4 +1,4 @@
-amqp==2.6.0  # Quick fix from: https://github.com/celery/py-amqp/issues/340
+amqp==5.0.9  # Quick fix from: https://github.com/celery/py-amqp/issues/340
 pytz==2019.3  # https://github.com/stub42/pytz
 python-slugify==4.0.0  # https://github.com/un33k/python-slugify
 Pillow==7.0.0  # https://github.com/python-pillow/Pillow
